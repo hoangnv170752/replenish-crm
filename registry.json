@@ -218,6 +218,26 @@
           "type": "registry:component"
         },
         {
+          "path": "src/components/atomic-crm/providers/nutr-api/storage.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/atomic-crm/providers/nutr-api/index.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/atomic-crm/providers/nutr-api/http.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/atomic-crm/providers/nutr-api/dataProvider.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/atomic-crm/providers/nutr-api/authProvider.ts",
+          "type": "registry:component"
+        },
+        {
           "path": "src/components/atomic-crm/providers/fakerest/index.ts",
           "type": "registry:component"
         },
@@ -859,6 +879,10 @@
         },
         {
           "path": "src/lib/toSlug.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/formatDateTimeDisplay.ts",
           "type": "registry:lib"
         }
       ]
