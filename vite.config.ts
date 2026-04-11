@@ -60,7 +60,7 @@ export default defineConfig({
     sourcemap: true,
   },
   resolve: {
-    preserveSymlinks: true,
+    // preserveSymlinks breaks nested resolution (Radix peers, TanStack, etc.) with pnpm.
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },

@@ -16,8 +16,8 @@ export const Welcome = () => (
         is a template designed to help you quickly build your own CRM.
       </p>
       <p className="text-sm mb-4">
-        This demo runs on a mock API, so you can explore and modify the data. It
-        resets on reload. The full version uses Supabase for the backend.
+        Connect this app to your backend (for example Supabase or a custom REST
+        API) to work with real customer data.
       </p>
       <p className="text-sm">
         Powered by{" "}

@@ -1,29 +1,13 @@
-import { CRM } from "@/components/atomic-crm/root/CRM";
+import { ReplenishCRM } from "@/components/replenish/ReplenishCRM";
 
 /**
- * Application entry point
+ * Replenish NutrAI — reads live data from the FastAPI admin API
+ * (see https://nutr-api.onrender.com/docs ).
  *
- * Customize Atomic CRM by passing props to the CRM component:
- *  - companySectors
- *  - darkTheme
- *  - dealCategories
- *  - dealPipelineStatuses
- *  - dealStages
- *  - lightTheme
- *  - logo
- *  - noteStatuses
- *  - taskTypes
- *  - title
- * ... as well as all the props accepted by shadcn-admin-kit's <Admin> component.
- *
- * @example
- * const App = () => (
- *    <CRM
- *       logo="./img/logo.png"
- *       title="Acme CRM"
- *    />
- * );
+ * Environment:
+ *  - VITE_NUTR_API_URL — API origin (default in .env.development)
+ *  - VITE_NUTR_ADMIN_API_KEY — optional; if set, skips manual key entry until cleared
  */
-const App = () => <CRM />;
+const App = () => <ReplenishCRM />;
 
 export default App;

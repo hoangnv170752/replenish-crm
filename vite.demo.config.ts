@@ -31,6 +31,9 @@ export default defineConfig({
     "import.meta.env.VITE_SB_PUBLISHABLE_KEY": JSON.stringify(
       process.env.VITE_SB_PUBLISHABLE_KEY ?? "https://demo.example.org",
     ),
+    "import.meta.env.VITE_NUTR_API_URL": JSON.stringify(
+      process.env.VITE_NUTR_API_URL ?? "https://nutr-api.onrender.com",
+    ),
   },
   base: "./",
   esbuild: {
@@ -40,7 +43,6 @@ export default defineConfig({
     sourcemap: true,
   },
   resolve: {
-    preserveSymlinks: true,
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
