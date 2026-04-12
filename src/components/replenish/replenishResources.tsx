@@ -10,7 +10,6 @@ import {
   ListPagination,
   NumberField,
   RecordField,
-  SearchInput,
   SelectInput,
   Show,
   SimpleForm,
@@ -21,6 +20,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 import type { NutrCrmDataProvider } from "@/components/atomic-crm/providers/nutr-api";
 
+import { CustomerList } from "./customers/CustomerList";
+
 const pagination = (
   <ListPagination rowsPerPageOptions={[10, 25, 50, 100, 200]} />
 );
@@ -29,32 +30,6 @@ const yn = (v: unknown) => (v ? "Yes" : "No");
 
 const customerRecordRepr = (r: RaRecord) =>
   String(r.email ?? r.username ?? `#${r.id}`);
-
-function CustomerList() {
-  return (
-    <List
-      filters={[<SearchInput source="q" alwaysOn key="q" />]}
-      perPage={25}
-      pagination={pagination}
-      sort={{ field: "created_at", order: "DESC" }}
-    >
-      <DataTable rowClick="show">
-        <DataTable.Col source="id" />
-        <DataTable.Col source="email" />
-        <DataTable.Col source="username" />
-        <DataTable.Col source="first_name" />
-        <DataTable.Col source="last_name" />
-        <DataTable.Col source="is_active" />
-        <DataTable.Col source="is_verified" />
-        <DataTable.Col source="is_paid" />
-        <DataTable.Col source="country" />
-        <DataTable.Col source="created_at">
-          <DateField source="created_at" />
-        </DataTable.Col>
-      </DataTable>
-    </List>
-  );
-}
 
 function CompanionStatsCard() {
   const record = useRecordContext();
