@@ -1,3 +1,4 @@
+import { endOfYesterday, startOfMonth, startOfWeek, subMonths } from "date-fns";
 import type {
   DataProvider,
   DeleteParams,
@@ -66,16 +67,47 @@ export function createNutrDataProvider(): NutrCrmDataProvider {
 
       if (resource === "customers") {
         const q = filter.q as string | undefined;
-        const is_active =
-          filter.is_active === true || filter.is_active === false
-            ? filter.is_active
-            : (filter.is_active as string | undefined) === "true"
-              ? true
-              : (filter.is_active as string | undefined) === "false"
-                ? false
-                : undefined;
+        const parseBool = (v: unknown): boolean | undefined => {
+          if (v === true) return true;
+          if (v === false) return false;
+          if (v === "true") return true;
+          if (v === "false") return false;
+          return undefined;
+        };
+        const is_active = parseBool(filter.is_active);
+        const is_verified = parseBool(filter.is_verified);
+        const is_paid = parseBool(filter.is_paid);
+        const has_completed_health_assessment = parseBool(
+          filter.has_completed_health_assessment,
+        );
+
+        const preset = filter.customer_joined as string | undefined;
+        let created_from: string | undefined;
+        let created_to: string | undefined;
+        if (preset === "today") {
+          created_from = endOfYesterday().toISOString();
+        } else if (preset === "this_week") {
+          created_from = startOfWeek(new Date()).toISOString();
+        } else if (preset === "before_this_week") {
+          created_to = startOfWeek(new Date()).toISOString();
+        } else if (preset === "before_this_month") {
+          created_to = startOfMonth(new Date()).toISOString();
+        } else if (preset === "before_last_month") {
+          created_to = subMonths(startOfMonth(new Date()), 1).toISOString();
+        }
+
         const res = await nutrFetchJson<AdminUserListResponse>(
-          `/api/v1/admin/users${toQuery({ q, is_active, limit, offset })}`,
+          `/api/v1/admin/users${toQuery({
+            q,
+            is_active,
+            is_verified,
+            is_paid,
+            has_completed_health_assessment,
+            created_from,
+            created_to,
+            limit,
+            offset,
+          })}`,
         );
         return { data: res.users, total: res.pagination.total };
       }
